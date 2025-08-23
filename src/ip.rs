@@ -136,14 +136,16 @@ impl Ipv4Hdr {
 
     /// Returns the source address field.
     #[inline]
-    pub fn src_addr(&self) -> core::net::Ipv4Addr {
-        core::net::Ipv4Addr::from(self.src_addr)
+    pub fn src_addr(&self) -> u32 {
+        // SAFETY: Pointer arithmetic in bounds of the struct.
+        unsafe { getter_be!(self, src_addr, u32) }
     }
 
     /// Returns the destination address field.
     #[inline]
-    pub fn dst_addr(&self) -> core::net::Ipv4Addr {
-        core::net::Ipv4Addr::from(self.dst_addr)
+    pub fn dst_addr(&self) -> u32 {
+        // SAFETY: Pointer arithmetic in bounds of the struct.
+        unsafe { getter_be!(self, dst_addr, u32) }
     }
 
     /// Sets the source address field.
