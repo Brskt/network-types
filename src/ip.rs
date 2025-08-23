@@ -95,7 +95,7 @@ impl Ipv4Hdr {
     }
 
     #[inline]
-    fn frags(&self) -> u16 {
+    pub fn frags(&self) -> u16 {
         // SAFETY: Pointer arithmetic in bounds of the struct.
         unsafe { getter_be!(self, frags, u16) }
     }
